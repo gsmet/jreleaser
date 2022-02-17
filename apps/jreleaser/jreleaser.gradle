@@ -51,9 +51,13 @@ dependencies {
     runtimeOnly "org.slf4j:slf4j-simple:$slf4jVersion"
 }
 
+//compileJava {
+//    options.compilerArgs += ["-Aproject=${project.name}"]
+//}
+
 processResources {
     inputs.property('version', project.version)
-    filesMatching(['**/*.properties']) {
+    filesMatching(['**/Banner*.properties']) {
         expand(
             'version': project.version,
             'id': 'jreleaser',
@@ -112,6 +116,21 @@ jdks {
         platform = 'osx-aarch64'
         url = 'https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-macosx_aarch64.zip'
         checksum = '8c287018d358ec2c43995bf09a0cdaa235f0bdd434673777a564daee2c3872df'
+    }
+    graal17Linux {
+        platform = 'linux-x86_64'
+        url = 'https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.3.0/graalvm-ce-java17-linux-amd64-21.3.0.tar.gz'
+        checksum = '11d8039e0a7a31b799a6f20a0e806e4128730e9a2595a7ffdec1443539d4c3f6'
+    }
+    graal17Osx {
+        platform = 'osx-x86_64'
+        url = 'https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.3.0/graalvm-ce-java17-darwin-amd64-21.3.0.tar.gz'
+        checksum = '60236506920cc84a07ea7602f4514d05da2c07c7176e0634652f8a9c5ad677aa'
+    }
+    graal17Windows {
+        platform = 'windows-x86_64'
+        url = 'https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-21.3.0/graalvm-ce-java17-windows-amd64-21.3.0.zip'
+        checksum = 'dd8b89ad60bf909327fdb6e5711d944c5e581d47add6414757ac9b293febc7be'
     }
 }
 
